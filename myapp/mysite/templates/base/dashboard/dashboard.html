@@ -1,0 +1,33 @@
+{% extends 'base/base.html'%}
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block content %}
+
+
+
+{% include 'base/navbar/navbar.html'%}
+
+{% if  recommended %}
+<h4> Recommandation</h4>
+<div class="row">
+    {% for item in recommended %}
+    <div class="col-4 mb-2">
+        <div class="card" style="width:18rem">
+            <img src="{{item.image}}" alt="" class="card-img-top">
+            <div class="card-footer">
+                <small class="text-muted">{{item.name_place}}</small>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endif %}
+
+
+{% include 'base/footer/footer.html'%}
+
+
+
+{% endblock content %}

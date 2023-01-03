@@ -1,0 +1,132 @@
+{% extends 'base/base.html'%}
+
+{% block title %}Register{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 mx-auto">
+            <h1 class="text-center text-muted mb-2 mt-3">Register</h1>
+            <p class="text-center text-muted">Join Moyi Recommender to day</p>
+
+            <!-- 
+            {% if messages %}
+           
+                {% for message in messages %}
+                <div class="col-md-12 alert alert-danger text-center" role="alert">
+                    {{message}}
+                </div>
+               
+                {% endfor %}
+        
+            {% endif %}
+
+            -->
+
+            {% if messages %}
+           
+                {% for message in messages %}
+                 <div id="liveAlertPlaceholder"></div>
+                 <button type="button" class="btn btn-primary" id="liveAlertBtn">Show alert message</button>
+ 
+                    {{message}}
+                
+           
+                {% endfor %}
+    
+            {% endif %}
+
+            
+            <form method="POST" action="{%url 'register'%}" class="row g-3" id="form-register-user">
+
+                {% csrf_token %}
+                    <div class="col-md-6">
+                        <label for="firstname" class="form-label">Firstname</label>
+                        <small class="text-danger" id="error-register-firstname"></small>
+                        {{form.firstname}}
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="lastname" class="form-label">Lastname</label>
+                        <small class="text-danger" id="error-register-lastname"></small>
+                        {{form.lastname}}
+                    </div>
+
+                    <div class="col-md-6 mt-3">
+                        <label for="username" class="form-label">Username</label>
+                        <small class="text-danger" id="error-register-lastname"></small>
+                        {{form.username}}
+                        
+                    </div>
+                    <!--
+                    <div class="col-md-6 mt-3">
+                        <label for="preference" class="form-label">Preference</label>
+                        <input class="form-control mb-3" list="datalistoptions" name="preference" id="preference" placeholder="Choise your preference ">
+                        <datalist id="datalistoptions">
+                            <option value="Hôtel"></option>
+                            <option value="Restaurant"></option>
+                            <option value="Plage"></option>
+                            <option value="Bibliothèque"></option>
+                            <option value="Cinema"></option>
+                            <option value="Parc"></option>
+                        </datalist> 
+                        <small class="text-danger" id="error-register-preference"></small>
+                        {{form.preference}}
+                        
+                    </div>
+                    -->
+
+                    <div class="col-md-6  mt-3">
+                        <label for="email" class="form-label">Email</label>
+                        <small class="text-danger" id="error-register-email"></small>
+                        {{form.email}}
+                    </div>
+
+                    <div class="col-md-12">
+                        <label for="password" class="form-label">Password</label>
+                        <small class="text-danger" id="error-register-password"></small>
+                        {{form.password}}
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="agree-terms" required>
+                            <label class="form-check-label" for="agree-terms">agree terms of service</label><br>
+                            <small class="text-danger" id="error-register-agree-terms"></small>
+                    </div> <br>
+
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary" type="submit" id="register-user">Register</button>
+                    </div>
+                    <p class="text-center text-muted mt-5">Do have an account? <a href="{% url 'login' %}">Login Here</a></p>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--notre code source java-->
+
+<script>
+    var alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+    var alertTrigger = document.getElementById('liveAlertBtn')
+
+function alert(message, type) {
+  var wrapper = document.createElement('div')
+  wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+
+  alertPlaceholder.append(wrapper)
+}
+
+if (alertTrigger) {
+  alertTrigger.addEventListener('click', function () {
+    alert('compte existant, veuillez changer votre adresse mail', 'danger')
+  })
+}
+</script>
+
+
+{% endblock content%}
+
+

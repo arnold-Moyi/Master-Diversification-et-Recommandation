@@ -1,0 +1,48 @@
+{% extends 'base/base.html'%}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <h1 class="text-center text-muted mb-3 mt-5">Sign In</h1>
+
+            <form method="POST" action="{%url 'login'%}">
+                {% csrf_token %}
+                <label for="username" class="form-label">Username</label>
+                <input type="text" name="username" id="username" class="form-control mb-3" value="" required autocomplete="username" placeholder="Please insert your username..." autofocus>
+
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" id="password" class="form-control mb-3" value="" required autocomplete="current-password" placeholder="Please insert your password..."autofocus>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input mb-3" type="checkbox" role="switch" id="remember" name="remember">
+                            <label class="form-check-label" for="remember">Remember</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 text-end">
+                        <a href="#" class="text ">Forgot password ?</a>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary" type="submit">Login</button>
+                </div>
+
+                <p class="text-center text-muted mt-5">Don't have an account? <a href="{% url 'register' %}" class="text">Sign Up</a></p>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}
+ 
+
+

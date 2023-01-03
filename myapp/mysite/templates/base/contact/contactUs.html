@@ -1,0 +1,44 @@
+{% extends 'base/base.html'%} 
+
+{% block title %}Contact Us{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <h1 class="text-center text-muted mb-3 mt-5">Contact Us</h1>
+
+            <form method="POST" action="{%url 'contact'%}">
+                {% csrf_token %}
+                <div>
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" name="name" id="name" class="form-control mb-3" value="" required autocomplete="current-name" placeholder="Please insert your name..." autofocus>
+                    {{form.name}}
+                </div>
+
+                <div>   
+                    <label for="email" class="form-label">Email</label>
+                     <input type="email" name="email" id="email" class="form-control mb-3" value="" required autocomplete="current-email" placeholder="Please insert your email..." autofocus>
+                     {{form.email}}
+                </div>
+              
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required autocomplete="currentmessage" placeholder="Please insert your message..." autofocus></textarea>
+                    {{form.message}}
+    
+                </div>
+            
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary" type="submit">Send Message</button>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}
